@@ -7,12 +7,15 @@ import com.futcleats.http.mapper.UserMapper;
 import com.futcleats.model.UserModel;
 import com.futcleats.services.RoleService;
 import com.futcleats.services.UserService;
+import com.futcleats.services.exception.UserNotFoundException;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -36,7 +39,11 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponse> findByID(@PathVariable String userId){
-        return ResponseEntity.ok().body(UserMapper.toResponse(userService.findById(UUID.fromString(userId))));
+        try {
+            return ResponseEntity.ok().body(UserMapper.toResponse(userService.findById(UUID.fromString(userId))));
+        } catch (UserNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", e);
+        }
     }
     @PostMapping
     public ResponseEntity<UserResponse> save(@Valid @RequestBody UserRequest userRequest){
@@ -44,11 +51,19 @@ public class UserController {
     }
     @PutMapping("/{userId}")
     public ResponseEntity<UserResponse> upDate(@PathVariable String userId, @Valid @RequestBody UserRequest userRequest){
-        return ResponseEntity.ok().body(UserMapper.toResponse(userService.upDate(UserMapper.toModel(userRequest),UUID.fromString(userId))));
+        try {
+            return ResponseEntity.ok().body(UserMapper.toResponse(userService.update(UserMapper.toModel(userRequest),UUID.fromString(userId))));
+        } catch (UserNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", e);
+        }
     }
     @DeleteMapping("/{userId}")
     public ResponseEntity<UUID> delete(@PathVariable String userId){
-        return ResponseEntity.ok().body(userService.delete(UUID.fromString(userId)));
+        try {
+            return ResponseEntity.ok().body(userService.delete(UUID.fromString(userId)));
+        } catch (UserNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", e);
+        }
     }
 
     @PostMapping("/role")

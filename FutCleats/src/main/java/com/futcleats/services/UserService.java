@@ -2,14 +2,9 @@ package com.futcleats.services;
 
 import com.futcleats.model.UserModel;
 import com.futcleats.repository.UserRepository;
-import com.futcleats.services.exception.RegraNegocioException;
+import com.futcleats.services.exception.UserNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,9 +24,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserModel findById(UUID id) {
+    public UserModel findById(UUID id) throws UserNotFoundException {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Usuário não encontrado"));
+                .orElseThrow(() -> new UserNotFoundException());
     }
 
     public UserModel save(UserModel userModel) {
@@ -39,16 +34,16 @@ public class UserService {
         return userRepository.save(userModel);
     }
 
-    public UserModel upDate(UserModel userModel, UUID id) {
-        userRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Usuário não encontrado"));
+    public UserModel update(UserModel userModel, UUID id) throws UserNotFoundException {
+        userRepository.findById(id).orElseThrow(() -> new UserNotFoundException());
         userModel.setId(id);
         userModel.setPassword(passwordEncoder().encode(userModel.getPassword()));
         userRepository.save(userModel);
         return userModel;
     }
 
-    public UUID delete(UUID id) {
-        UserModel usuario = userRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Usuário não encontrado"));
+    public UUID delete(UUID id) throws UserNotFoundException {
+        UserModel usuario = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException());
         userRepository.delete(usuario);
         return id;
     }
