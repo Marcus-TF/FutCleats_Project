@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -23,7 +24,7 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-    public ReservationModel findById(Long id){
+    public ReservationModel findById(UUID id){
         return reservationRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Reserva não encontrada"));
     }
 
@@ -31,24 +32,24 @@ public class ReservationService {
         return reservationRepository.save(reservationModel);
     }
 
-    public  ReservationModel update(ReservationModel reservationModel, Long id){
+    public  ReservationModel update(ReservationModel reservationModel, UUID id){
         reservationRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Reserva não encontrada"));
         reservationModel.setId(id);
         reservationRepository.save(reservationModel);
         return reservationModel;
     }
 
-    public Long delete(Long id){
+    public UUID delete(UUID id){
        ReservationModel reservationModel = reservationRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Reserva não encontrada"));
        reservationRepository.delete(reservationModel);
        return id;
     }
 
-    public List<ReservationModel> findReservationByUser(Long id){
+    public List<ReservationModel> findReservationByUser(UUID id){
         return reservationRepository.findAllReservationByUserModel(userRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException("Usuário não encontrado para pesquisar a reserva.")));
     }
-    public Long cancelAppointment(Long id){
+    public UUID cancelAppointment(UUID id){
         ReservationModel reservationModel = reservationRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Reserva não encontrada"));
         reservationModel.setReservationStatus(ReservationStatus.CANCELED);
         reservationRepository.saveAndFlush(reservationModel);

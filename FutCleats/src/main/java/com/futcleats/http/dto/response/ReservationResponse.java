@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +14,7 @@ import java.util.List;
 @Setter
 public class ReservationResponse {
 
-    private Long id;
+    private UUID id;
 
     private Integer hour;
 
@@ -23,10 +24,10 @@ public class ReservationResponse {
 
     private String nameUser;
 
-    private Long idUser;
+    private UUID idUser;
 
     private String nameField;
 
-    private Long idField;
+    private UUID idField;
 
 }

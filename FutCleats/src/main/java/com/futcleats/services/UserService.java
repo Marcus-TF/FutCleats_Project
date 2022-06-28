@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserModel findById(Long id) {
+    public UserModel findById(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException("Usuário não encontrado"));
     }
@@ -38,7 +39,7 @@ public class UserService {
         return userRepository.save(userModel);
     }
 
-    public UserModel upDate(UserModel userModel, Long id) {
+    public UserModel upDate(UserModel userModel, UUID id) {
         userRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Usuário não encontrado"));
         userModel.setId(id);
         userModel.setPassword(passwordEncoder().encode(userModel.getPassword()));
@@ -46,7 +47,7 @@ public class UserService {
         return userModel;
     }
 
-    public Long delete(Long id) {
+    public UUID delete(UUID id) {
         UserModel usuario = userRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Usuário não encontrado"));
         userRepository.delete(usuario);
         return id;

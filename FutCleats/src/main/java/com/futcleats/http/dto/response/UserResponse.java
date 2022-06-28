@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.OneToOne;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class UserResponse {
 
-    private Long id;
+    private UUID id;
 
     private String name;
 

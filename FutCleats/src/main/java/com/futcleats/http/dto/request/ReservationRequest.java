@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,9 +17,9 @@ public class ReservationRequest {
     @NotNull(message = "Informe a data.")
     private Date bookingDate;
 
-    private Long idUser;
+    private UUID idUser;
 
-    private Long idField;
+    private UUID idField;
 
     private ReservationStatus reservationStatus;
 }

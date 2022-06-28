@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Validated
@@ -27,7 +28,7 @@ public class ReservationController {
 
     @GetMapping("/{reservationId}")
     public ResponseEntity<ReservationResponse> findById(@PathVariable String reservationId){
-        return ResponseEntity.ok().body(ReservationMapper.toResponse(reservationService.findById(Long.valueOf(reservationId))));
+        return ResponseEntity.ok().body(ReservationMapper.toResponse(reservationService.findById(UUID.fromString(reservationId))));
     }
 
     @PostMapping
@@ -37,18 +38,18 @@ public class ReservationController {
 
     @PutMapping("/{reservationId}")
     public ResponseEntity<ReservationResponse> update(@RequestBody ReservationRequest reservationRequest, @Valid @PathVariable String reservationId){
-        return ResponseEntity.ok().body(ReservationMapper.toResponse(reservationService.update(ReservationMapper.toModel(reservationRequest), Long.valueOf(reservationId))));
+        return ResponseEntity.ok().body(ReservationMapper.toResponse(reservationService.update(ReservationMapper.toModel(reservationRequest), UUID.fromString(reservationId))));
     }
 
     @DeleteMapping("/{reservationId}")
-    public ResponseEntity<Long> delete(@PathVariable String reservationId){
-        return ResponseEntity.ok().body(reservationService.delete(Long.valueOf(reservationId)));
+    public ResponseEntity<UUID> delete(@PathVariable String reservationId){
+        return ResponseEntity.ok().body(reservationService.delete(UUID.fromString(reservationId)));
     }
 
 
     @GetMapping("/findReservationByUser/{userId}")
     public ResponseEntity<List<ReservationResponse>> findReservationByUser(@PathVariable String userId){
-        return ResponseEntity.ok().body(ReservationMapper.toResponseList(reservationService.findReservationByUser(Long.valueOf(userId))));
+        return ResponseEntity.ok().body(ReservationMapper.toResponseList(reservationService.findReservationByUser(UUID.fromString(userId))));
     }
 
 }

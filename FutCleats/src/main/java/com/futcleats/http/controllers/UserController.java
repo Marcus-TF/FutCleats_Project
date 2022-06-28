@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -35,7 +36,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponse> findByID(@PathVariable String userId){
-        return ResponseEntity.ok().body(UserMapper.toResponse(userService.findById(Long.valueOf(userId))));
+        return ResponseEntity.ok().body(UserMapper.toResponse(userService.findById(UUID.fromString(userId))));
     }
     @PostMapping
     public ResponseEntity<UserResponse> save(@Valid @RequestBody UserRequest userRequest){
@@ -43,11 +44,11 @@ public class UserController {
     }
     @PutMapping("/{userId}")
     public ResponseEntity<UserResponse> upDate(@PathVariable String userId, @Valid @RequestBody UserRequest userRequest){
-        return ResponseEntity.ok().body(UserMapper.toResponse(userService.upDate(UserMapper.toModel(userRequest), Long.valueOf(userId))));
+        return ResponseEntity.ok().body(UserMapper.toResponse(userService.upDate(UserMapper.toModel(userRequest),UUID.fromString(userId))));
     }
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Long> delete(@PathVariable String userId){
-        return ResponseEntity.ok().body(userService.delete(Long.valueOf(userId)));
+    public ResponseEntity<UUID> delete(@PathVariable String userId){
+        return ResponseEntity.ok().body(userService.delete(UUID.fromString(userId)));
     }
 
     @PostMapping("/role")
