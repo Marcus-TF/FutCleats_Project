@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class FieldService {
         return fieldRepository.findAll();
     }
 
-    public FieldModel findById(Long id){
+    public FieldModel findById(UUID id){
         return fieldRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Campo não encontrada"));
     }
 
@@ -27,14 +28,14 @@ public class FieldService {
         return fieldRepository.save(fieldModel);
     }
 
-    public FieldModel update(FieldModel fieldModel, Long id){
+    public FieldModel update(FieldModel fieldModel, UUID id){
         fieldRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Campo não encontrada"));
         fieldModel.setId(id);
         fieldRepository.save(fieldModel);
         return fieldModel;
     }
 
-    public Long delete(Long id){
+    public UUID delete(UUID id){
         var fieldModel = fieldRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Campo não encontrada"));
         fieldRepository.delete(fieldModel);
         return id;

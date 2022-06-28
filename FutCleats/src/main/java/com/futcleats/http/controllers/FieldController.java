@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/fields")
@@ -27,7 +28,7 @@ public class FieldController {
 
     @GetMapping("/{fieldId}")
     public ResponseEntity<FieldResponse> findById(@PathVariable String fieldId){
-        return ResponseEntity.ok().body(FieldMapper.toResponse(fieldService.findById(Long.valueOf(fieldId))));
+        return ResponseEntity.ok().body(FieldMapper.toResponse(fieldService.findById(UUID.fromString(fieldId))));
     }
 
     @PostMapping
@@ -37,11 +38,11 @@ public class FieldController {
 
     @PutMapping("/{fieldId}")
     public ResponseEntity<FieldResponse> update(@RequestBody FieldRequest fieldRequest, @Valid @PathVariable String fieldId){
-        return ResponseEntity.ok().body(FieldMapper.toResponse(fieldService.update(FieldMapper.toModel(fieldRequest), Long.valueOf(fieldId))));
+        return ResponseEntity.ok().body(FieldMapper.toResponse(fieldService.update(FieldMapper.toModel(fieldRequest), UUID.fromString(fieldId))));
     }
 
     @DeleteMapping("/{fieldId}")
-    public ResponseEntity<Long> delete(@PathVariable String fieldId){
-        return ResponseEntity.ok().body(fieldService.delete(Long.valueOf(fieldId)));
+    public ResponseEntity<UUID> delete(@PathVariable String fieldId){
+        return ResponseEntity.ok().body(fieldService.delete(UUID.fromString(fieldId)));
     }
 }
