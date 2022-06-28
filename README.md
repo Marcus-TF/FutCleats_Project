@@ -9,6 +9,7 @@
 <li>Java 17</li>
 <li>Spring Boot</li>
 <li>PostgreSQL</li>
+<li>Postman</li>
 <li>Swagger</li>
 <li>IDE: Intellij</li>
 </ul>
