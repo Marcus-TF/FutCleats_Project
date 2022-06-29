@@ -1,10 +1,8 @@
 package com.futcleats.http.dto.response;
 
-import com.futcleats.model.ReservationModel;
 import lombok.*;
 
-import javax.persistence.OneToOne;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +25,7 @@ public class UserResponse {
 
     private String email;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String password;
 

@@ -1,6 +1,7 @@
 package com.futcleats.http.dto.request;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
@@ -9,8 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -33,8 +33,9 @@ public class UserRequest {
     @Email(message = "Informe um email válido.")
     private String email;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @NotNull(message = "Informe a data de nascimento.")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @NotEmpty(message = "Informe a senha.")
     @Size(max=20,min=5,message="Mínimo 8 caracteres e máximo 20.")

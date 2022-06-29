@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,7 +37,7 @@ public class UserModel implements Serializable {
 
     private String email;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String password;
 
