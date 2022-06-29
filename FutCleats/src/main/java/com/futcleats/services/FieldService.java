@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class FieldService {
 
-    private FieldRepository fieldRepository;
+    private final FieldRepository fieldRepository;
 
     public List<FieldModel> findAll() {
         return fieldRepository.findAll();

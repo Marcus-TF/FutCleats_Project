@@ -3,6 +3,7 @@ package com.futcleats.http.dto.response;
 import com.futcleats.model.enums.ReservationStatus;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +19,7 @@ public class ReservationResponse {
 
     private Integer hour;
 
-    private Date bookingDate;
+    private LocalDateTime bookingDate;
 
     private ReservationStatus reservationStatus;
 

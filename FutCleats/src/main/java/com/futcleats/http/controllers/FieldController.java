@@ -22,7 +22,7 @@ import java.util.UUID;
 @Validated
 public class FieldController {
 
-    private FieldService fieldService;
+    private final FieldService fieldService;
 
     @GetMapping("/all")
     public ResponseEntity<List<FieldResponse>> findAll(){

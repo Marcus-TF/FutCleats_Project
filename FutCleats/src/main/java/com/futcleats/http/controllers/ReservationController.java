@@ -22,7 +22,7 @@ import java.util.UUID;
 @RequestMapping("/reservations")
 public class ReservationController {
 
-    private ReservationService reservationService;
+    private final ReservationService reservationService;
 
     @GetMapping("/all")
     public ResponseEntity<List<ReservationResponse>> findAll(){

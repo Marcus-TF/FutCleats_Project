@@ -15,9 +15,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ReservationService {
 
-    private ReservationRepository reservationRepository;
+    private final ReservationRepository reservationRepository;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public List<ReservationModel> findAll() {
         return reservationRepository.findAll();
