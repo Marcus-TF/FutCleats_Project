@@ -24,7 +24,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserModel findById(UUID id) throws UserNotFoundException {
+    public UserModel findById(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado."));
     }
@@ -34,7 +34,7 @@ public class UserService {
         return userRepository.save(userModel);
     }
 
-    public UserModel update(UserModel userModel, UUID id) throws UserNotFoundException {
+    public UserModel update(UserModel userModel, UUID id) {
         userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Usuário não encontrado."));
         userModel.setId(id);
         userModel.setPassword(passwordEncoder().encode(userModel.getPassword()));
@@ -42,7 +42,7 @@ public class UserService {
         return userModel;
     }
 
-    public UUID delete(UUID id) throws UserNotFoundException {
+    public UUID delete(UUID id) {
         UserModel usuario = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Usuário não encontrado."));
         userRepository.delete(usuario);
         return id;

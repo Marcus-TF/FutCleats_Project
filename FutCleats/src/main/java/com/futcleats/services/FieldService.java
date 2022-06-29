@@ -15,26 +15,26 @@ public class FieldService {
 
     private FieldRepository fieldRepository;
 
-    public List<FieldModel> findAll(){
+    public List<FieldModel> findAll() {
         return fieldRepository.findAll();
     }
 
-    public FieldModel findById(UUID id) throws FieldNotFoundException {
+    public FieldModel findById(UUID id) {
         return fieldRepository.findById(id).orElseThrow(() -> new FieldNotFoundException("Campo não encontrado."));
     }
 
-    public FieldModel save(FieldModel fieldModel){
+    public FieldModel save(FieldModel fieldModel) {
         return fieldRepository.save(fieldModel);
     }
 
-    public FieldModel update(FieldModel fieldModel, UUID id) throws FieldNotFoundException {
+    public FieldModel update(FieldModel fieldModel, UUID id) {
         fieldRepository.findById(id).orElseThrow(() -> new FieldNotFoundException("Campo não encontrado."));
         fieldModel.setId(id);
         fieldRepository.save(fieldModel);
         return fieldModel;
     }
 
-    public UUID delete(UUID id) throws FieldNotFoundException {
+    public UUID delete(UUID id) {
         var fieldModel = fieldRepository.findById(id).orElseThrow(() -> new FieldNotFoundException("Campo não encontrado."));
         fieldRepository.delete(fieldModel);
         return id;

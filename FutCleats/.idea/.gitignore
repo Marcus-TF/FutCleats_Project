@@ -1,3 +1,8 @@
+HELP.md
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+.idea
 # Default ignored files
 /shelf/
 /workspace.xml
