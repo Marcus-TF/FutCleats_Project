@@ -12,15 +12,16 @@ C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túli
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\mapper\FieldMapper.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\repository\FieldRepository.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\repository\ReservationRepository.java
+C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\exception\ReservationNotFoundException.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\RoleService.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\FutCleatsApplication.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\dto\request\FieldRequest.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\repository\UserRepository.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\mapper\UserMapper.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\FieldService.java
+C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\exception\FieldNotFoundException.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\controllers\ReservationController.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\dto\request\RoleRequest.java
-C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\exception\RegraNegocioException.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\UserService.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\dto\response\RoleResponse.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\config\validation\NotEmptyList.java
@@ -29,6 +30,7 @@ C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túli
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\applicationAdvice\ApiControllerAdvice.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\model\UserModel.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\model\ReservationModel.java
+C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\exception\UserNotFoundException.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\model\RoleModel.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\http\dto\response\ReservationResponse.java
 C:\Users\Mota Solutions 002\OneDrive\Outros\Documents\Developer\Repository_Túlio\FutCleats_Project\FutCleats\src\main\java\com\futcleats\services\ReservationService.java

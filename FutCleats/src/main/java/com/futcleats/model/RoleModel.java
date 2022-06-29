@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -15,10 +17,13 @@ import java.util.UUID;
 @Entity
 @Data
 @Table(name = "role", schema = "project")
-public class RoleModel {
+public class RoleModel implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private RoleStatus roleStatus = RoleStatus.USER;

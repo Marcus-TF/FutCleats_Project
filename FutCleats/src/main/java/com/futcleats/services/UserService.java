@@ -4,6 +4,7 @@ import com.futcleats.model.UserModel;
 import com.futcleats.repository.UserRepository;
 import com.futcleats.services.exception.UserNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
