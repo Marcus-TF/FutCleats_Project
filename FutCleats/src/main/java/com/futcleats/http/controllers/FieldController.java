@@ -4,7 +4,7 @@ import com.futcleats.http.dto.request.FieldRequest;
 import com.futcleats.http.dto.response.FieldResponse;
 import com.futcleats.http.mapper.FieldMapper;
 import com.futcleats.services.FieldService;
-import com.futcleats.services.exception.FieldNotFoundException;
+import com.futcleats.exception.FieldNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +31,7 @@ public class FieldController {
 
     @GetMapping("/{fieldId}")
     public ResponseEntity<FieldResponse> findById(@PathVariable String fieldId){
-        try {
             return ResponseEntity.ok().body(FieldMapper.toResponse(fieldService.findById(UUID.fromString(fieldId))));
-        } catch (FieldNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campo não encontrado.", e);
-        }
     }
 
     @PostMapping
@@ -45,19 +41,11 @@ public class FieldController {
 
     @PutMapping("/{fieldId}")
     public ResponseEntity<FieldResponse> update(@RequestBody FieldRequest fieldRequest, @Valid @PathVariable String fieldId){
-        try {
             return ResponseEntity.ok().body(FieldMapper.toResponse(fieldService.update(FieldMapper.toModel(fieldRequest), UUID.fromString(fieldId))));
-        } catch (FieldNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campo não encontrado.", e);
-        }
     }
 
     @DeleteMapping("/{fieldId}")
     public ResponseEntity<UUID> delete(@PathVariable String fieldId){
-        try {
             return ResponseEntity.ok().body(fieldService.delete(UUID.fromString(fieldId)));
-        } catch (FieldNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campo não encontrado.", e);
-        }
     }
 }

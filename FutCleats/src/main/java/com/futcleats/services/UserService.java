@@ -2,9 +2,8 @@ package com.futcleats.services;
 
 import com.futcleats.model.UserModel;
 import com.futcleats.repository.UserRepository;
-import com.futcleats.services.exception.UserNotFoundException;
+import com.futcleats.exception.UserNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class UserService {
 
     public UserModel findById(UUID id) throws UserNotFoundException {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException());
+                .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado."));
     }
 
     public UserModel save(UserModel userModel) {
@@ -36,7 +35,7 @@ public class UserService {
     }
 
     public UserModel update(UserModel userModel, UUID id) throws UserNotFoundException {
-        userRepository.findById(id).orElseThrow(() -> new UserNotFoundException());
+        userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Usuário não encontrado."));
         userModel.setId(id);
         userModel.setPassword(passwordEncoder().encode(userModel.getPassword()));
         userRepository.save(userModel);
@@ -44,7 +43,7 @@ public class UserService {
     }
 
     public UUID delete(UUID id) throws UserNotFoundException {
-        UserModel usuario = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException());
+        UserModel usuario = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Usuário não encontrado."));
         userRepository.delete(usuario);
         return id;
     }
