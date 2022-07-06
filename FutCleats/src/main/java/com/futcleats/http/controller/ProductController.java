@@ -46,4 +46,9 @@ public class ProductController {
     public ResponseEntity<UUID> delete(@PathVariable String productId){
         return ResponseEntity.ok().body(productService.delete(UUID.fromString(productId)));
     }
+
+    @GetMapping("/findAllProductsByCategory/{categoryId}")
+    public ResponseEntity<List<ProductResponse>> findAllProductsByCategory(@PathVariable String categoryId){
+        return ResponseEntity.ok().body(ProductMapper.toResponseList(productService.findAllProductsByCategory(UUID.fromString(categoryId))));
+    }
 }

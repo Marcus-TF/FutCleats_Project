@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,12 +32,12 @@ public class CategoryController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<CategoryResponse> save(@RequestBody CategoryRequest categoryRequest){
+    public ResponseEntity<CategoryResponse> save(@RequestBody @Valid CategoryRequest categoryRequest){
         return ResponseEntity.ok().body(CategoryMapper.toResponse(categoryService.save(CategoryMapper.toModel(categoryRequest))));
     }
 
     @PutMapping("/{categoryId}")
-    public ResponseEntity<CategoryResponse> update(@RequestBody CategoryRequest categoryRequest, @PathVariable String categoryId){
+    public ResponseEntity<CategoryResponse> update(@RequestBody @Valid CategoryRequest categoryRequest, @PathVariable String categoryId){
         return ResponseEntity.ok().body(CategoryMapper.toResponse(categoryService.update(CategoryMapper.toModel(categoryRequest), UUID.fromString(categoryId))));
     }
 

@@ -1,7 +1,9 @@
 package com.futcleats.services;
 
+import com.futcleats.exception.CategoryNotFoundException;
 import com.futcleats.exception.ProductNotFoundException;
 import com.futcleats.model.ProductModel;
+import com.futcleats.repository.CategoryRepository;
 import com.futcleats.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.UUID;
 public class ProductService {
 
     private final ProductRepository productRepository;
+
+    private final CategoryRepository categoryRepository;
 
     public List<ProductModel> findAll() {
         return productRepository.findAll();
@@ -41,5 +45,10 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotFoundException("Produto não encontrado."));
         productRepository.delete(productModel);
         return uuid;
+    }
+
+    public List<ProductModel> findAllProductsByCategory(UUID uuid) {
+        return productRepository.findAllByCategoryModel(categoryRepository.findById(uuid)
+                .orElseThrow(() -> new CategoryNotFoundException("Categoria não encontrada.")));
     }
 }
