@@ -40,7 +40,7 @@ public class ReservationController {
     }
 
     @PutMapping("/{reservationId}")
-    public ResponseEntity<ReservationResponse> update(@RequestBody ReservationRequest reservationRequest, @Valid @PathVariable String reservationId){
+    public ResponseEntity<ReservationResponse> update(@RequestBody @Valid ReservationRequest reservationRequest, @PathVariable String reservationId){
             return ResponseEntity.ok().body(ReservationMapper.toResponse(reservationService.update(ReservationMapper.toModel(reservationRequest), UUID.fromString(reservationId))));
     }
 

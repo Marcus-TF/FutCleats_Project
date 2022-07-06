@@ -40,7 +40,7 @@ public class FieldController {
     }
 
     @PutMapping("/{fieldId}")
-    public ResponseEntity<FieldResponse> update(@RequestBody FieldRequest fieldRequest, @Valid @PathVariable String fieldId){
+    public ResponseEntity<FieldResponse> update(@RequestBody @Valid FieldRequest fieldRequest, @PathVariable String fieldId){
             return ResponseEntity.ok().body(FieldMapper.toResponse(fieldService.update(FieldMapper.toModel(fieldRequest), UUID.fromString(fieldId))));
     }
 

@@ -2,6 +2,7 @@ package com.futcleats.exception.handler;
 
 import com.futcleats.config.ApiError;
 import com.futcleats.exception.FieldNotFoundException;
+import com.futcleats.exception.ProductNotFoundException;
 import com.futcleats.exception.ReservationNotFoundException;
 import com.futcleats.exception.UserNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -106,12 +107,29 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    protected ResponseEntity<Object> handleNoPermission(UserNotFoundException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleInvalidData(UserNotFoundException ex, WebRequest request) {
         var status = HttpStatus.FORBIDDEN;
 
         ApiError apiError = ApiError.builder()
                 .status(status.value())
-                .title("Não autorizado.")
+                .title("Dados inválidos.")
+                .type(getErrorDocumentationUrl(request))
+                .detail(ex.getMessage())
+                .build();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PROBLEM_JSON);
+
+        return super.handleExceptionInternal(ex, apiError, headers, status, request);
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    protected ResponseEntity<Object> handleInvalidData(ProductNotFoundException ex, WebRequest request) {
+        var status = HttpStatus.BAD_REQUEST;
+
+        ApiError apiError = ApiError.builder()
+                .status(status.value())
+                .title("Dados inválidos.")
                 .type(getErrorDocumentationUrl(request))
                 .detail(ex.getMessage())
                 .build();
