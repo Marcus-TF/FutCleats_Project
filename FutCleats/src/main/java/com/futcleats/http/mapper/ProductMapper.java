@@ -2,6 +2,7 @@ package com.futcleats.http.mapper;
 
 import com.futcleats.http.dto.request.ProductRequest;
 import com.futcleats.http.dto.response.ProductResponse;
+import com.futcleats.model.CategoryModel;
 import com.futcleats.model.ProductModel;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ public class ProductMapper {
                 .name(productRequest.getName())
                 .quantidade(productRequest.getQuantidade())
                 .value(productRequest.getValue())
+                .categoryModel(CategoryModel.builder().uuid(productRequest.getCodCategory()).build())
                 .build();
     }
 

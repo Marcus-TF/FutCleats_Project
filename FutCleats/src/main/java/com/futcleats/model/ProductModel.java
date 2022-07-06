@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -18,6 +19,9 @@ import java.util.UUID;
 @Table(name = "products", schema = "project")
 public class ProductModel implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID uuid;
@@ -29,6 +33,6 @@ public class ProductModel implements Serializable {
     private BigDecimal value;
 
     @ManyToOne
-    @JoinColumn(name = "cod_category")
+    @JoinColumn(name = "category_codCategory")
     private CategoryModel categoryModel;
 }
