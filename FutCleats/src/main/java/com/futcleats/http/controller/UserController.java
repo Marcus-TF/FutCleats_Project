@@ -1,4 +1,4 @@
-package com.futcleats.http.controllers;
+package com.futcleats.http.controller;
 
 import com.futcleats.http.dto.request.UserRequest;
 import com.futcleats.http.dto.response.CreateUserRoleResponse;

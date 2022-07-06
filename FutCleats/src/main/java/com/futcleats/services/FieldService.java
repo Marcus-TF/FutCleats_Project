@@ -1,6 +1,8 @@
 package com.futcleats.services;
 
+import com.futcleats.exception.CategoryNotFoundException;
 import com.futcleats.model.FieldModel;
+import com.futcleats.repository.CategoryRepository;
 import com.futcleats.repository.FieldRepository;
 import com.futcleats.exception.FieldNotFoundException;
 import lombok.AllArgsConstructor;
@@ -14,6 +16,8 @@ import java.util.UUID;
 public class FieldService {
 
     private final FieldRepository fieldRepository;
+
+    private final CategoryRepository categoryRepository;
 
     public List<FieldModel> findAll() {
         return fieldRepository.findAll();
@@ -38,5 +42,10 @@ public class FieldService {
         var fieldModel = fieldRepository.findById(id).orElseThrow(() -> new FieldNotFoundException("Campo não encontrado."));
         fieldRepository.delete(fieldModel);
         return id;
+    }
+
+    public List<FieldModel> findAllFieldsByCategory(UUID uuid){
+        return fieldRepository.findFieldModelByCategoryModel(categoryRepository.findById(uuid)
+                .orElseThrow(()-> new CategoryNotFoundException("Categoria não encontrada.")));
     }
 }

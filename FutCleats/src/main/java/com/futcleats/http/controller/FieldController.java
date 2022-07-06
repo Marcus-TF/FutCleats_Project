@@ -1,16 +1,13 @@
-package com.futcleats.http.controllers;
+package com.futcleats.http.controller;
 
 import com.futcleats.http.dto.request.FieldRequest;
 import com.futcleats.http.dto.response.FieldResponse;
 import com.futcleats.http.mapper.FieldMapper;
 import com.futcleats.services.FieldService;
-import com.futcleats.exception.FieldNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -47,5 +44,10 @@ public class FieldController {
     @DeleteMapping("/{fieldId}")
     public ResponseEntity<UUID> delete(@PathVariable String fieldId){
             return ResponseEntity.ok().body(fieldService.delete(UUID.fromString(fieldId)));
+    }
+
+    @GetMapping("/findAllFieldsByCategory/{categoryId}")
+    public ResponseEntity<List<FieldResponse>> findAllFieldsByCategory(@PathVariable String categoryId){
+        return ResponseEntity.ok().body(FieldMapper.toResponseList(fieldService.findAllFieldsByCategory(UUID.fromString(categoryId))));
     }
 }

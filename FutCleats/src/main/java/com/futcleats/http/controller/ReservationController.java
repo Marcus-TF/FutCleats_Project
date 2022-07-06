@@ -1,16 +1,13 @@
-package com.futcleats.http.controllers;
+package com.futcleats.http.controller;
 
 import com.futcleats.http.dto.request.ReservationRequest;
 import com.futcleats.http.dto.response.ReservationResponse;
 import com.futcleats.http.mapper.ReservationMapper;
 import com.futcleats.services.ReservationService;
-import com.futcleats.exception.ReservationNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
