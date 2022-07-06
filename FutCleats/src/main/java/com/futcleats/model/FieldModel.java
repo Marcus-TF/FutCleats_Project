@@ -27,4 +27,8 @@ public class FieldModel implements Serializable {
 
     @OneToMany(mappedBy = "fieldModel")
     private List<ReservationModel> reservationModelList;
+
+    @ManyToOne
+    @JoinColumn(name = "cod_categoryCod")
+    private CategoryModel categoryModel;
 }

@@ -2,6 +2,7 @@ package com.futcleats.http.mapper;
 
 import com.futcleats.http.dto.request.FieldRequest;
 import com.futcleats.http.dto.response.FieldResponse;
+import com.futcleats.model.CategoryModel;
 import com.futcleats.model.FieldModel;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ public class FieldMapper {
     public static FieldModel toModel(FieldRequest fieldRequest){
         return FieldModel.builder()
                 .name(fieldRequest.getName())
+                .categoryModel(CategoryModel.builder().uuid(fieldRequest.getCodCategory()).build())
                 .build();
     }
 
