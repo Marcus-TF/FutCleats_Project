@@ -26,7 +26,6 @@ public class FieldMapper {
         return FieldResponse.builder()
                 .id(fieldModel.getId())
                 .name(fieldModel.getName())
-                .reservationResponseList(ReservationMapper.toResponseList(fieldModel.getReservationModelList()))
                 .build();
     }
 

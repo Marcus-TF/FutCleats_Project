@@ -17,6 +17,4 @@ public class FieldResponse {
     private UUID id;
 
     private String name;
-
-    private List<ReservationResponse> reservationResponseList;
 }

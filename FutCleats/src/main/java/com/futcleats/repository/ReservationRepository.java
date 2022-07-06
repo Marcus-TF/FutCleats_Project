@@ -1,5 +1,6 @@
 package com.futcleats.repository;
 
+import com.futcleats.model.FieldModel;
 import com.futcleats.model.ReservationModel;
 import com.futcleats.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,5 +13,7 @@ import java.util.UUID;
 public interface ReservationRepository extends JpaRepository<ReservationModel, UUID> {
 
     List<ReservationModel> findAllReservationByUserModel(UserModel userModel);
+
+    List<ReservationModel> findReservationModelByFieldModel(FieldModel fieldModel);
 
 }

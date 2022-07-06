@@ -52,4 +52,9 @@ public class ReservationController {
             return ResponseEntity.ok().body(ReservationMapper.toResponseList(reservationService.findReservationByUser(UUID.fromString(userId))));
     }
 
+    @GetMapping("/findReservationModelByFieldModel/{fieldId}")
+    public ResponseEntity<List<ReservationResponse>> findReservationModelByFieldModel(@PathVariable String fieldId){
+        return ResponseEntity.ok().body(ReservationMapper.toResponseList(reservationService.findReservationsByField(UUID.fromString(fieldId))));
+    }
+
 }

@@ -1,7 +1,9 @@
 package com.futcleats.services;
 
+import com.futcleats.exception.FieldNotFoundException;
 import com.futcleats.model.ReservationModel;
 import com.futcleats.model.enums.ReservationStatus;
+import com.futcleats.repository.FieldRepository;
 import com.futcleats.repository.ReservationRepository;
 import com.futcleats.repository.UserRepository;
 import com.futcleats.exception.ReservationNotFoundException;
@@ -16,6 +18,8 @@ import java.util.UUID;
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
+
+    private final FieldRepository fieldRepository;
 
     private final UserRepository userRepository;
 
@@ -54,5 +58,10 @@ public class ReservationService {
         reservationModel.setReservationStatus(ReservationStatus.CANCELED);
         reservationRepository.saveAndFlush(reservationModel);
         return id;
+    }
+
+    public List<ReservationModel> findReservationsByField(UUID id) {
+        return reservationRepository.findReservationModelByFieldModel(fieldRepository.findById(id)
+                .orElseThrow(() -> new FieldNotFoundException("Reserva não encontrada.")));
     }
 }
