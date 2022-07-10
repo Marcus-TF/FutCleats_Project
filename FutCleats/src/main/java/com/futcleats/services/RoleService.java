@@ -1,43 +1,37 @@
 package com.futcleats.services;
 
-import com.futcleats.http.dto.response.CreateUserRoleResponse;
+import com.futcleats.exception.RoleNotFoudException;
+import com.futcleats.exception.UserNotFoundException;
 import com.futcleats.model.RoleModel;
-import com.futcleats.model.UserModel;
+import com.futcleats.repository.RoleRepository;
 import com.futcleats.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.RoleStatus;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class RoleService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
 
-    public UserModel execute(CreateUserRoleResponse createUserRoleResponse) {
+    public List<RoleModel> findAll(){
+        return roleRepository.findAll();
+    }
 
-        Optional<UserModel> userExist = userRepository.findById(createUserRoleResponse.getIdUser());
-        List<RoleModel> roleModelList = new ArrayList<>();
+    public RoleModel findById(UUID uuid){
+        return roleRepository.findById(uuid).orElseThrow(() -> new RoleNotFoudException("Role não encontrada."));
+    }
 
-        if (userExist.isEmpty()) {
-            throw new Error("Usuário não encontrado.");
-        } else {
+    public RoleModel save(RoleModel roleModel) {
+        return roleRepository.save(roleModel);
+    }
 
-            roleModelList = createUserRoleResponse.getRoleStatusLists().stream().map(role -> {
-                return new RoleModel(role);
-            }).collect(Collectors.toList());
-        }
-
-        UserModel userModel = userExist.get();
-
-        userModel.setRoleModelList(roleModelList);
-
-        userRepository.save(userModel);
-        return userModel;
+    public List<RoleModel> findRolesByUser(UUID uuid) {
+        return roleRepository.findRoleModelByUserModel(userRepository.findById(uuid)
+                .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado.")));
     }
 }

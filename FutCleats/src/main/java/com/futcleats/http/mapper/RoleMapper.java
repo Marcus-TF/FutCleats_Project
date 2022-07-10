@@ -3,6 +3,7 @@ package com.futcleats.http.mapper;
 import com.futcleats.http.dto.request.RoleRequest;
 import com.futcleats.http.dto.response.RoleResponse;
 import com.futcleats.model.RoleModel;
+import com.futcleats.model.UserModel;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,14 +17,15 @@ public class RoleMapper {
 
     public static RoleModel toModel(RoleRequest roleRequest){
         return RoleModel.builder()
-                .roleStatus(roleRequest.getRoleStatus())
+                .name(roleRequest.getName())
+                .userModel(UserModel.builder().id(roleRequest.getIdUser()).build())
                 .build();
     }
 
     public static RoleResponse toResponse(RoleModel roleModel){
         return RoleResponse.builder()
                 .id(roleModel.getId())
-                .roleStatus(roleModel.getRoleStatus())
+                .name(roleModel.getName())
                 .build();
     }
 

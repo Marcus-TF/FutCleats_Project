@@ -1,10 +1,7 @@
 package com.futcleats.exception.handler;
 
 import com.futcleats.config.ApiError;
-import com.futcleats.exception.FieldNotFoundException;
-import com.futcleats.exception.ProductNotFoundException;
-import com.futcleats.exception.ReservationNotFoundException;
-import com.futcleats.exception.UserNotFoundException;
+import com.futcleats.exception.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -140,6 +137,23 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, apiError, headers, status, request);
     }
 
+    @ExceptionHandler(RoleNotFoudException.class)
+    protected ResponseEntity<Object> handleInvalidData(RoleNotFoudException ex, WebRequest request) {
+        var status = HttpStatus.BAD_REQUEST;
+
+        ApiError apiError = ApiError.builder()
+                .status(status.value())
+                .title("Dados inválidos.")
+                .type(getErrorDocumentationUrl(request))
+                .detail(ex.getMessage())
+                .build();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PROBLEM_JSON);
+
+        return super.handleExceptionInternal(ex, apiError, headers, status, request);
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     protected ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex, WebRequest request) {
         var status = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -184,6 +198,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         return super.handleExceptionInternal(ex, apiError, headers, status, request);
     }
+
+
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {

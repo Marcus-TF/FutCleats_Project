@@ -4,6 +4,7 @@ import com.futcleats.http.dto.request.UserRequest;
 import com.futcleats.http.dto.response.UserResponse;
 import com.futcleats.model.FieldModel;
 import com.futcleats.model.ReservationModel;
+import com.futcleats.model.RoleModel;
 import com.futcleats.model.UserModel;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +39,6 @@ public class UserMapper {
                 .email(userModel.getEmail())
                 .birthDate(userModel.getBirthDate())
                 .password(userModel.getPassword())
-                .roleResponseList(RoleMapper.roleResponseList(userModel.getRoleModelList()))
                 .build();
     }
 

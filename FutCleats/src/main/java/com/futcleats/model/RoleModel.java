@@ -26,13 +26,9 @@ public class RoleModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private RoleStatus roleStatus = RoleStatus.USER;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
     private UserModel userModel;
-
-    public RoleModel(RoleStatus roleStatus) {
-        this.roleStatus = roleStatus;
-    }
 }

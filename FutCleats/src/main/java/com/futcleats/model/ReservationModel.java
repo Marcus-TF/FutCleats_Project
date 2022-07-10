@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -31,7 +29,7 @@ public class ReservationModel implements Serializable {
 
     private Integer hour;
 
-    private LocalDateTime bookingDate;
+    private Date bookingDate;
 
     private ReservationStatus reservationStatus = ReservationStatus.OPENED;
     @ManyToOne

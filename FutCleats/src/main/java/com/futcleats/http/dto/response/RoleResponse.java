@@ -16,5 +16,5 @@ public class RoleResponse {
 
     private UUID id;
 
-    private RoleStatus roleStatus;
+    private String name;
 }

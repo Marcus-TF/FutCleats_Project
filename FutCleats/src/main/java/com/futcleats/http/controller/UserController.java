@@ -49,10 +49,4 @@ public class UserController {
     public ResponseEntity<UUID> delete(@PathVariable String userId){
             return ResponseEntity.ok().body(userService.delete(UUID.fromString(userId)));
     }
-
-    @PostMapping("/role")
-    public UserModel role(@RequestBody CreateUserRoleResponse createUserRoleResponse){
-        return roleService.execute(createUserRoleResponse);
-    }
-
 }

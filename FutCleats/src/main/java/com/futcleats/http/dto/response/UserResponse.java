@@ -28,6 +28,4 @@ public class UserResponse {
     private LocalDate birthDate;
 
     private String password;
-
-    private List<RoleResponse> roleResponseList;
 }

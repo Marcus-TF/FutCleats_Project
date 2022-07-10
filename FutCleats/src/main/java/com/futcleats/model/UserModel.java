@@ -41,6 +41,4 @@ public class UserModel implements Serializable {
 
     private String password;
 
-    @OneToMany(mappedBy = "userModel")
-    private List<RoleModel> roleModelList;
 }

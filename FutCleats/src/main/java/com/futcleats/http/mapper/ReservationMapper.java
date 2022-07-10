@@ -32,9 +32,7 @@ public class ReservationMapper {
                 .hour(reservationModel.getHour())
                 .bookingDate(reservationModel.getBookingDate())
                 .reservationStatus(reservationModel.getReservationStatus())
-                .idUser(reservationModel.getUserModel().getId())
                 .nameUser(reservationModel.getUserModel().getName())
-                .idField(reservationModel.getFieldModel().getId())
                 .nameField(reservationModel.getFieldModel().getName())
                 .build();
     }
